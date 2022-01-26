@@ -21,8 +21,8 @@ export const getPlacesData = async () => {
     //making a get request w/ URL based on travel advisor api, and options I got from get endpoint (axios)
     try {
         // I got an object that contains {data: with object {data} that i need to use in my jsx to render}
-        const { data: { data }} = await axios.get(URL, options)
-        return data
+        const { data: { data }} = await axios.get(URL, options);
+        return data;
     } catch (error) {
         console.log(error)
     }
