@@ -4,7 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import {Paper, Typography, useMediaQuery} from '@material-ui/core';
 import LocationOnOutLinedIcon from '@material-ui/icons/LocationOnOutlined';
 //Rating component, from lab cuz it still working on
-import Rating from '@material-ui/lab';
+import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles';
 
@@ -18,7 +18,7 @@ const Map = ( {setCoordinates, setBounds, coordinates, places }) => {
                 1.1 Google map w/ attributes like: g.keys + coordinates + zoom and few...
                 1.2 .map places to div w/ their markers
                 1.2.1 if isDesktop = true -> show icons on the map
-                1.2.2 if isDesktop = false -> show div w/ background which contain place name
+                1.2.2 if isDesktop = false -> show div w/ background which contain place name and expiremental func rating()
             
         */
         <div className={classes.mapContainer}>
@@ -60,6 +60,7 @@ const Map = ( {setCoordinates, setBounds, coordinates, places }) => {
                                         src={place.photo ? place.photo.images.large.url : 'https://brendinstrument.ru/image/cache/no_image-1280x960.jpg'}
                                         alt={place.name}
                                     />
+                                    <Rating size='small' value={Number(place.rating)} readOnly />
                                 </Paper>
                             )
                         }
