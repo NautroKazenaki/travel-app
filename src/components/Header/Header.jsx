@@ -12,7 +12,7 @@ const Header = () => {
     const classes = useStyles()
 
     return (
-        
+        // headerBar => toolbar => label + container => label + some google completer => search div => search icon + input
         <AppBar position='static'>
             <Toolbar className={classes.toolbar}>
                 <Typography variant='h5' className={classes.title}>
