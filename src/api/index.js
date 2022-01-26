@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary'
 
 
 
-export const getPlacesData = async (sw, ne) => {
+
+export const getPlacesData = async (type, sw, ne) => {
     //making a get request w/ URL based on travel advisor api, and options I got from get endpoint (axios)
     try {
         // I got an object that contains {data: with object {data} that i need to use in my jsx to render}
         // 2nd param is 'options' that uses mine cornerns data
-        const { data: { data }} = await axios.get(URL, {
+        const { data: { data }} = await axios.get(`https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`, {
           params: {
             bl_latitude: sw.lat,
             tr_latitude: ne.lat,

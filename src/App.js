@@ -9,10 +9,16 @@ import Map from './components/Map/Map';
 const App = () => {
     //hook that will make state filled w/ restaraunts
     const [places, setPlaces] = useState([]);
+    const [childClicked, setChildClicked] = useState(null);
 
     const [coordinates, setCoordinates] = useState({});
     //hook that set state of  corners's coordinates
     const [bounds, setBounds] = useState({});
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [type, setType] = useState('restaurants');
+    const [rating, setRating] = useState('');
+
     //hook to get my coordinates
     useEffect( () => {
         navigator.geolocation.getCurrentPosition( ({coords: {latitude, longitude}}) => {
@@ -21,11 +27,13 @@ const App = () => {
     }, [])
     //hook that will get restaraunts when we start an application
     useEffect( () => {
-        getPlacesData(bounds.sw, bounds.ne)
+        setIsLoading(true);
+        getPlacesData(type, bounds.sw, bounds.ne)
             .then( (data) => {
                 setPlaces(data);
+                setIsLoading(false);
             })
-    }, [coordinates, bounds]);
+    }, [type, coordinates, bounds]);
 
     return (
         <>
@@ -35,6 +43,12 @@ const App = () => {
                 <Grid item xs={12} md={4}>
                     <List 
                         places={places} 
+                        childClicked={childClicked}
+                        isLoading={isLoading}
+                        type={type}
+                        setType={setType}
+                        rating={rating}
+                        setRating={setRating}
                     />
                 </Grid>
                 <Grid item xs={12} md={8}>
@@ -43,6 +57,7 @@ const App = () => {
                         setBounds={setBounds}
                         coordinates={coordinates}
                         places={places}
+                        setChildClicked={setChildClicked}
                     />
                 </Grid>
             </Grid>

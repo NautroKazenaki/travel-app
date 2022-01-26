@@ -7,11 +7,14 @@ import LocationOnOutLinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles';
+import { useState } from 'react';
 
-const Map = ( {setCoordinates, setBounds, coordinates, places }) => {
+const Map = ( {setCoordinates, setBounds, coordinates, places, setChildClicked }) => {
     const classes = useStyles();
     //const says 'false' if device screen >600px
     const isDesktop = useMediaQuery('(min-width: 600px)');
+    
+    
     return (
         /*
             1.container => 
@@ -38,7 +41,7 @@ const Map = ( {setCoordinates, setBounds, coordinates, places }) => {
                     setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw})
                 }}
                 //when click at any object on the map
-                onChildClick={''}
+                onChildClick={(child) => setChildClicked(child)}
             >
                 {places?.map( (place, i) => (
                     <div

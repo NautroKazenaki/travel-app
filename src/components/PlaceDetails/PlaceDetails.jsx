@@ -6,8 +6,11 @@ import Rating from '@material-ui/lab/Rating'
 
 import useStyle from './styles'
 //props from List component
-const PlaceDetails = ({place}) => {
+const PlaceDetails = ({place, selected, refProp}) => {
     const classes = useStyle()
+    // simple check selected item to find it in a list
+    if(selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start'});
+
     return (
         /*card w/ shadow effect => 
         1. cardMedia (attr: height of card + image of place + title of image) +
