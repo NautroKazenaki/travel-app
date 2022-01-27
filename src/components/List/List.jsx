@@ -17,7 +17,6 @@ const List = ({places, childClicked, isLoading, type, setType, rating, setRating
         
 
         setElRefs(refs);
-        console.log({elRefs})
     }, [places]);
 
     return (
