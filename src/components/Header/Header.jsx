@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 //google helper
 import { Autocomplete} from '@react-google-maps/api';
 //typography is working w/ all texts and set it to 'h5'
@@ -8,8 +8,19 @@ import SearchIcon from '@material-ui/icons/Search'
 // using this hook to style our components => check styles.js
 import useStyles from './styles'
 
-const Header = () => {
+const Header = ({setCoordinates}) => {
     const classes = useStyles()
+    const [autocomplete, setAutocomplete] = useState(null)
+
+    const onLoad = (autoC) => setAutocomplete(autoC)
+
+    const onPlaceChanged = () => {
+        //from Google maps documentation
+        const lat = autocomplete.getPlace().geometry.location.lat()
+        const lng = autocomplete.getPlace().geometry.location.lng()
+
+        setCoordinates({lat, lng})
+    }
 
     return (
         // headerBar => toolbar => label + container => label + some google completer => search div => search icon + input
@@ -22,14 +33,14 @@ const Header = () => {
                     <Typography variant='h6' className={classes.title}>
                         Explore new places
                     </Typography>
-                    {/* <Autocomplete> */}
+                    <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />
                             </div>
                             <InputBase placeholder='search...' classes={ {root: classes.inputRoot, input: classes.inputInput} }/>
                         </div>
-                    {/* </Autocomplete> */}
+                    </Autocomplete>
                 </Box>
             </Toolbar>
         </AppBar>

@@ -9,7 +9,7 @@ import useStyle from './styles'
 const PlaceDetails = ({place, selected, refProp}) => {
     const classes = useStyle()
     // simple check selected item to find it in a list
-    if(selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start'});
+    if (selected) refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start"});
 
     return (
         /*card w/ shadow effect => 
