@@ -28,7 +28,7 @@ const Map = ( {setCoordinates, setBounds, coordinates, places, setChildClicked, 
         <div className={classes.mapContainer}>
             <GoogleMapReact
                 //console.cloud.google.com/projectcreate => project name => dashboard => search for that u need => enable => credetials => new => keys
-                bootstrapURLKeys={ {key: 'AIzaSyAj-Zesde6Bzj6sZkgk_kAc7DBWJemLmFE'} }
+                bootstrapURLKeys={ {key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY} }
                 //center of the map
                 defaultCenter={coordinates}
                 //real center
